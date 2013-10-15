@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
 
 namespace CSL_Geocoder
 {
@@ -17,9 +15,12 @@ namespace CSL_Geocoder
             /* pull entries and create parsable file (xml or json) */
 
             /* geocode addresses
-             * think about letting user choose type of coder in config file
+             * let user choose type of coder in config file
+             * we could actually use more than one geocoder if we need
              * all coders implement Geocoder interface */
-            Geocoder geo = new MapQuestGeocoder();
+            GeocoderFactory factory = new GeocoderFactory();
+            String coderType = ConfigurationManager.AppSettings["GeocoderType"];
+            Geocoder geo = factory.getGeocoder(coderType);
 
             /* load coded addresses into db */
 
