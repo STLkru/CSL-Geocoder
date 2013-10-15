@@ -12,7 +12,9 @@ namespace CSL_Geocoder
 
             /* check for entries younger than limit */
 
-            /* pull entries and create parsable file (xml or json) */
+            /* pull entries and create json */
+            List<String> testJSON = new List<string>(){ "stuff", "otherstuff", "moarstuff" };
+
 
             /* geocode addresses
              * let user choose type of coder in config file
@@ -21,6 +23,8 @@ namespace CSL_Geocoder
             GeocoderFactory factory = new GeocoderFactory();
             String coderType = ConfigurationManager.AppSettings["GeocoderType"];
             Geocoder geo = factory.getGeocoder(coderType);
+
+            List<String> codedAddresses = geo.codeAsBatchJSON(testJSON);
 
             /* load coded addresses into db */
 

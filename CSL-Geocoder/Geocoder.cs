@@ -7,9 +7,9 @@ namespace CSL_Geocoder
 {
     public interface Geocoder
     {
-        //function taking json and outputting json?
+        //json is recommended in both cases and has smaller overhead
+        String codeAsJSON(string inputJSON);
 
-        //function taking xml and outputting xml?
-
+        List<String> codeAsBatchJSON(IEnumerable<string> inputBatch); 
     }
 }
