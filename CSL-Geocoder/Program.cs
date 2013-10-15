@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using Newtonsoft.Json;
 
 namespace CSL_Geocoder
 {
@@ -12,9 +13,8 @@ namespace CSL_Geocoder
 
             /* check for entries younger than limit */
 
-            /* pull entries and create json */
-            List<String> testJSON = new List<string>(){ "stuff", "otherstuff", "moarstuff" };
-
+            /* pull entries as userinfo objects and create json */
+            List<string> testJson = new List<string>(){"stuff", "morestuff", "holyshitmorestuff"};
 
             /* geocode addresses
              * let user choose type of coder in config file
@@ -24,7 +24,7 @@ namespace CSL_Geocoder
             String coderType = ConfigurationManager.AppSettings["GeocoderType"];
             Geocoder geo = factory.getGeocoder(coderType);
 
-            List<String> codedAddresses = geo.codeAsBatchJSON(testJSON);
+            List<string> codedAddresses = geo.codeAsBatchJSON(testJson);
 
             /* load coded addresses into db */
 
