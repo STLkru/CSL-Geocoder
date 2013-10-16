@@ -13,7 +13,7 @@ namespace CSL_Geocoder
         }
 
 
-        public List<string> codeAsBatchJSON(IEnumerable<string> inputBatch)
+        public IEnumerable<string> codeAsBatchJSON(IEnumerable<string> inputBatch)
         {
             throw new NotImplementedException();
         }

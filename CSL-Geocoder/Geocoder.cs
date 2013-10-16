@@ -10,6 +10,6 @@ namespace CSL_Geocoder
         //json is recommended in both cases and has smaller overhead
         String codeAsJSON(string inputJSON);
 
-        List<String> codeAsBatchJSON(IEnumerable<string> inputBatch); 
+        IEnumerable<String> codeAsBatchJSON(IEnumerable<string> inputBatch); 
     }
 }

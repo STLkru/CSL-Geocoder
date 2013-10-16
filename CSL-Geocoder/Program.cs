@@ -14,7 +14,7 @@ namespace CSL_Geocoder
             /* check for entries younger than limit */
 
             /* pull entries as userinfo objects and create json */
-            List<string> testJson = new List<string>(){"stuff", "morestuff", "holyshitmorestuff"};
+            var testJson = new List<string>(){"stuff", "morestuff", "holyshitmorestuff"};
 
             /* geocode addresses
              * let user choose type of coder in config file
@@ -24,7 +24,12 @@ namespace CSL_Geocoder
             String coderType = ConfigurationManager.AppSettings["GeocoderType"];
             Geocoder geo = factory.getGeocoder(coderType);
 
-            List<string> codedAddresses = geo.codeAsBatchJSON(testJson);
+            /* Jake, I checked it out and you were definitely right that we should use var here
+             * since all we care about is that this is object is enumerable. Everywhere I looked said
+             * that it was just a short cut for the dev so that he doesn't have to specify the type and perform Linq queries.
+             * Apparently it's substituted at compile time for the correct type and has absolutely no
+             * impact on performace though so we don't need to worry one way or the other if we are trying to speed things up. */
+            var codedAddresses = geo.codeAsBatchJSON(testJson);
 
             /* load coded addresses into db */
 
